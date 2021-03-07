@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% extends 'core/base.html' %}
+    {% block title %}Харон{% endblock %}
+</head>
+<body>
+    {% block content %}
+<div class="Zoomer">
+    <h1 class="Letter LH1">Все виды ритуальных товаров и услуг</h1>
+    <h2 class="Letter LH2">Телефон круглосуточно: +7(000)000-00-00</h2>
+    <h3 class="Letter LH3">г.Чита, ул.Уличная, дом 1</h3>
+    <img class="Zoomer_Img" src="http://l91449n4.beget.tech/Lorem.jpg"/>
+</div>
+<div class="What_to_Do">
+    <h1 class="What_to_Do_Text">Что мы делаем?</h1>
+    <hr/>
+    <div class="What_to_Do_List">
+        {% for i_kategoria in kategorii_uslug %}
+            <div class="What_to_Do_Page">
+                <h1 class="What_to_Do_H">
+                    {{ i_kategoria.nazvanie }}
+                </h1>
+                <hr/>
+                <ul class="What_to_Do_ul">
+                    {% for i_usluga in i_kategoria.uslugi_kategorii.all %}
+                        <li>{{ i_usluga.nazvanie }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+
+<div class="What_to_Have">
+    <hr/>
+    <h1 class="What_to_Do_Text">Что у нас есть?</h1>
+    <hr/>
+
+    <div class="What_to_Do_List">
+        {% for i_tovar in kategorii_tovarov %}
+            <div class="What_to_Do_Page">
+                <h1 class="What_to_Do_H">
+                    {{ i_tovar.nazvanie }}
+                </h1>
+                <hr/>
+                <div class="Setout">
+                    {% if  i_tovar.img %}
+                        <img class="Setout_img1" src="{{ i_tovar.img.url }}"/>
+                    {% else %}
+                        <img class="Setout_img1" src="http://l91449n4.beget.tech/img/3.jpg"/>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+    {% endblock %}
+</body>
+</html>
